@@ -1,0 +1,17 @@
+CREATE DATABASE TODOAPP;
+
+USE TODOAPP;
+
+CREATE TABLE TODOS (
+	id INT NOT NULL AUTO_INCREMENT,
+	title VARCHAR(30),
+    summary VARCHAR(500),
+    iscompleted BOOL DEFAULT FALSE,
+    PRIMARY KEY (id)
+);
+
+SELECT * FROM TODOS;
+
+
+-- INSERT INTO TODOS (title, summary) VALUES ("Surya", "Teja");
+
