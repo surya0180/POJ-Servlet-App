@@ -11,9 +11,9 @@ import java.util.List;
 import com.projects.todo.beans.TodoBean;
 
 public class TodoDAO {
-    private String JDBC_URL = "jdbc:mysql://localhost:3306/todoapp?autoReconnect=true&useSSL=false";
-    private String JDBC_USERNAME = "root";
-    private String JDBC_PASSWORD = "01800180";
+    private final String JDBC_URL = "jdbc:mysql://localhost:3306/todoapp?autoReconnect=true&useSSL=false";
+    private final String JDBC_USERNAME = "root";
+    private final String JDBC_PASSWORD = "01800180";
 
     private static final String INSERT_TODO = "INSERT INTO TODOS" + " (title, summary) VALUES " + " (?, ?);";
     private static final String SELECT_TODO_BY_ID = "SELECT * FROM TODOS WHERE id=?;";
@@ -51,10 +51,11 @@ public class TodoDAO {
                 PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_TODO_BY_ID)) {
             preparedStatement.setString(1, todo.getTitle());
             preparedStatement.setString(2, todo.getSummary());
-            preparedStatement.setBoolean(3, todo.isIscompleted());
+            preparedStatement.setInt(3, todo.isIscompleted() ? 1 : 0);
+            preparedStatement.setInt(4, todo.getId());
             isUpdated = preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
-            e.getStackTrace();
+            e.printStackTrace();
         }
         return isUpdated;
     }

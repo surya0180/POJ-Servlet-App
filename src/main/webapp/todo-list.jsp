@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%> <%@ taglib uri="jakarta.tags.core" prefix="c" %>
-<!-- <html>
+<html>
   <head>
     <title>Todo Application</title>
     <link
@@ -14,88 +14,43 @@ pageEncoding="UTF-8"%> <%@ taglib uri="jakarta.tags.core" prefix="c" %>
     <header>
       <nav
         class="navbar navbar-expand-md navbar-dark"
-        style="background-color: tomato"
+        style="background-color: darkolivegreen"
       >
         <div>
-          <a href="" class="navbar-brand"> Todo App </a>
+          <a href="<%=request.getContextPath()%>/" class="navbar-brand"> Todo App </a>
         </div>
-
-        <ul class="navbar-nav">
-          <li>
-            <a href="<%=request.getContextPath()%>/" class="nav-link">Todos</a>
-          </li>
-        </ul>
       </nav>
     </header>
     <br />
-    <c:out value="HEY THERE" />
     <div class="row">
-
       <div class="container">
-        <h3 class="text-center">List of Todos</h3>
-        <hr />
+        <h3>List of Todos</h3>
+        <hr style="width: 2em"/>
         <div class="container text-left">
-          <a href="<%=request.getContextPath()%>/form" class="btn btn-success"
+          <a href="<%=request.getContextPath()%>/new-form" class="btn btn-info"
             >Add New Todo</a
           >
         </div>
         <br />
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Title</th>
-              <th>Summary</th>
-              <th>Status</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <c:forEach var="todo" items="${todos}">
-              <c:out value="${todo}" />
-              <tr>
-                <td><c:out value="${todo.id}" /></td>
-                <td><c:out value="${todo.title}" /></td>
-                <td><c:out value="${todo.summary}" /></td>
-                <td><c:out value="${todo.iscompleted}" /></td>
-                <td>
-                  <a href="edit?id=<c:out value='${todo.id}' />">Edit</a>
-                  &nbsp;&nbsp;&nbsp;&nbsp;
-                  <a href="delete?id=<c:out value='${todo.id}' />">Delete</a>
-                </td>
-              </tr>
-            </c:forEach>
-          </tbody>
-        </table>
+        <c:if test="${todos.size() == 0}">
+          <div class="text-center">
+            <h4>Nothing to do.</h4>
+          </div>
+        </c:if>
+        <div class="d-flex" style="gap: 1em;flex-wrap: wrap">
+          <c:forEach var="todo" items="${todos}">
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">${todo.title}</h5>
+                <h6 class="card-subtitle mb-2 text-muted"><b>Status: </b> ${todo.iscompleted}</h6>
+                <p class="card-text">${todo.summary}</p>
+                <a href="edit-form?id=<c:out value='${todo.id}' />" class="btn btn-secondary">Edit</a>
+                <a href="delete?id=<c:out value='${todo.id}' />" class="btn btn-danger">Delete</a>
+              </div>
+            </div>
+          </c:forEach>
+        </div>
       </div>
     </div>
-  </body>
-</html> -->
-
-<html>
-  <head>
-    <title>Error</title>
-  </head>
-  <body>
-    <center>
-      <h2>
-        <!-- <c:forEach var="nm" items="${arr}">
-          <c:out value="${nm}" />
-          <tr>
-            <td><c:out value="${todo.id}" /></td>
-            <td><c:out value="${todo.title}" /></td>
-            <td><c:out value="${todo.summary}" /></td>
-            <td><c:out value="${todo.iscompleted}" /></td>
-            <td>
-              <a href="edit?id=<c:out value='${todo.id}' />">Edit</a>
-              &nbsp;&nbsp;&nbsp;&nbsp;
-              <a href="delete?id=<c:out value='${todo.id}' />">Delete</a>
-            </td>
-          </tr>
-        </c:forEach> -->
-        <c:out value="${name}" />
-        Surya
-      </h2>
-    </center>
   </body>
 </html>
