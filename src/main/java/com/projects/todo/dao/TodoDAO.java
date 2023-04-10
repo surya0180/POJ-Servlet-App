@@ -11,7 +11,7 @@ import java.util.List;
 import com.projects.todo.beans.TodoBean;
 
 public class TodoDAO {
-    private final String JDBC_URL = "jdbc:mysql://localhost:3306/todoapp?autoReconnect=true&useSSL=false";
+    private final String JDBC_URL = "jdbc:mysql://db:3306/TODOAPP?autoReconnect=true&allowPublicKeyRetrieval=true&useSSL=false";
     private final String JDBC_USERNAME = "root";
     private final String JDBC_PASSWORD = "01800180";
 
